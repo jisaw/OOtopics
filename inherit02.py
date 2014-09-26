@@ -38,22 +38,26 @@ class Vehicle(object):
             return 0.0  # Not yet sold
         return self.base_sale_price - (.10 * self.miles)
         
-    def repair_cost(self):
+    def repair_cost(self, cor, dor):
     """ set up local variables cost_of_repair, date_of_repair
     ... make these variables of type list so that each time 
-    ... a repair occurs, the fact can be retained.
-    
+    ... a repair occurs, the fact can be retained."""
+        self.cost_of_repair.append(cor)
+        self.date_of_repair.append(dor)
 
     @abstractmethod
     def vehicle_type(self):
         """"Return a string representing the type of vehicle this is."""
-        pass
+        return "vehicle"
         
 class Car(Vehicle):
     """A car for sale by Jeffco Car Dealership."""
 
     base_sale_price = 8000
     wheels = 4
+
+    def get_sale_price():
+        return self.base_sale_price
 
     def vehicle_type(self):
         """"Return a string representing the type of vehicle this is."""
@@ -65,6 +69,9 @@ class Truck(Vehicle):
     base_sale_price = 10000
     wheels = 4
 
+    def get_sale_price():
+        return self.base_sale_price
+
     def vehicle_type(self):
         """"Return a string representing the type of vehicle this is."""
         return 'truck'
@@ -75,7 +82,27 @@ class Motorcycle(Vehicle):
     base_sale_price = 4000
     wheels = 2
 
+    def get_sale_price():
+        return self.base_sale_price
+
     def vehicle_type(self):
         """"Return a string representing the type of vehicle this is."""
         return 'motorcycle'
         
+        
+        
+def main():
+    vehicle = Vehicle()
+    car = Car()
+    truck = Truck()
+    moto = Motorcycle()
+    
+    try:
+        print(vehicle.sale_price())
+        print(car.purchase_price())
+        print(truck.get_sale_price())
+        print(moto.make)
+        
+        
+if __name__ = "__main__":
+    main()
